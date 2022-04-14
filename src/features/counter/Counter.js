@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import {
   decrement,
+  decrementByAmount,
   increment,
   incrementByAmount,
   incrementAsync,
+  fetchData,
   incrementIfOdd,
   selectCount,
+  showAlert,
 } from './counterSlice';
 import { Button } from './Button';
 import styles from './Counter.module.css';
@@ -55,19 +58,19 @@ export function Counter() {
           action={incrementAsync(incrementValue)}
           text={'Square value'}
         />
-        <Button action={incrementIfOdd(incrementValue)} text={'Show binary'} />
+        <Button action={showAlert(incrementValue)} text={'Show binary'} />
       </div>
 
       <div className={styles.row}>
         <Button
           //? we need to decrement here
-          action={decrement()}
+          action={decrementByAmount(incrementValue)}
           text={' Decrement Amount'}
         />
         <Button
           // ?we need to fetch some data we the id of the count on an random API
           async={true}
-          action={incrementAsync(incrementValue)}
+          action={fetchData(incrementValue)}
           text={`Fetch Id ${count}`}
         />
         <Button action={incrementIfOdd(incrementValue)} text={'Add If Even'} />
