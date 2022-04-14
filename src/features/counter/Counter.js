@@ -10,6 +10,7 @@ import {
   incrementAsync,
   fetchData,
   incrementIfOdd,
+  incrementIfEven,
   selectCount,
   showAlert,
 } from './counterSlice';
@@ -75,7 +76,7 @@ export function Counter() {
           action={fetchData(incrementValue)}
           text={`Fetch Id ${count}`}
         />
-        <Button action={incrementIfOdd(incrementValue)} text={'Add If Even'} />
+        <Button action={incrementIfEven(incrementValue)} text={'Add If Even'} />
       </div>
     </div>
   );
