@@ -20,9 +20,9 @@ export const incrementAsync = createAsyncThunk(
     return response.data;
   }
 );
-//? den kserw ti einai to parakatw
+//!bug
+//? den kserw ti akrivos einai to parakatw
 export const fetchData = createAsyncThunk('data.quotes', async (id) => {
-  console.log('gfgh');
   try {
     const res = await (
       await fetch(`https://api.adviceslip.com/advice/${id}`)
@@ -56,6 +56,12 @@ export const counterSlice = createSlice({
     decrementByAmount: (state, action) => {
       state.value -= action.payload;
     },
+    square: (state) => {
+      state.value = Math.pow(state.value, 2);
+    },
+    powerOf: (state, action) => {
+      state.value = Math.pow(state.value, action.payload);
+    },
 
     //! maybe a bug with nagative numbers
     showAlert: (state) => {
@@ -81,6 +87,8 @@ export const {
   decrement,
   incrementByAmount,
   decrementByAmount,
+  square,
+  powerOf,
   showAlert,
 } = counterSlice.actions;
 

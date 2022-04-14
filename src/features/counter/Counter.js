@@ -5,6 +5,8 @@ import {
   decrementByAmount,
   increment,
   incrementByAmount,
+  square,
+  powerOf,
   incrementAsync,
   fetchData,
   incrementIfOdd,
@@ -52,11 +54,11 @@ export function Counter() {
       </div>
 
       <div className={styles.row}>
-        <Button action={incrementByAmount(incrementValue)} text={'Square'} />
+        <Button action={square(incrementValue)} text={'Square'} />
         <Button
           async={true}
-          action={incrementAsync(incrementValue)}
-          text={'Square value'}
+          action={powerOf(incrementValue)}
+          text={'power of '}
         />
         <Button action={showAlert(incrementValue)} text={'Show binary'} />
       </div>
