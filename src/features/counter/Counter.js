@@ -14,7 +14,7 @@ import {
   selectCount,
   reset,
   showAlert,
-} from './counterSlice';
+} from '../../app/';
 import { Button } from './Button';
 import styles from './Counter.module.css';
 
@@ -23,7 +23,7 @@ export function Counter() {
 
   const [inputValue, setInputValue] = useState(2);
 
-  const incrementValue = Number(inputValue) || 0;
+  const value = Number(inputValue) || 0;
 
   return (
     <div>
@@ -50,40 +50,33 @@ export function Counter() {
         />
       </div>
       <div className={styles.row}>
-        <Button
-          action={incrementByAmount(incrementValue)}
-          text={'Add Amount'}
-        />
+        <Button action={incrementByAmount(value)} text={'Add Amount'} />
         <Button
           async={true}
-          action={incrementAsync(incrementValue)}
+          action={incrementAsync(value)}
           text={' Add Async'}
         />
 
-        <Button action={incrementIfOdd(incrementValue)} text={'Add If Odd '} />
+        <Button action={incrementIfOdd(value)} text={'Add If Odd '} />
       </div>
       <div className={styles.row}>
-        <Button action={square(incrementValue)} text={'Square'} />
-        <Button
-          async={true}
-          action={powerOf(incrementValue)}
-          text={'power of '}
-        />
-        <Button action={showAlert(incrementValue)} text={'Show binary'} />
+        <Button action={square(value)} text={'Square'} />
+        <Button async={true} action={powerOf(value)} text={'power of '} />
+        <Button action={showAlert(value)} text={'Show binary'} />
       </div>
       <div className={styles.row}>
         <Button
-          //? we need to decrement here
-          action={decrementByAmount(incrementValue)}
+          //? decrement
+          action={decrementByAmount(value)}
           text={' Decrement Amount'}
         />
         <Button
-          // ?we need to fetch some data we the id of the count on an random API
+          // ? fetch some data with id the value on an random API
           async={true}
-          action={fetchData(incrementValue)}
-          text={`Fetch Id ${count}`}
+          action={fetchData(value)}
+          text={`Fetch advice with Id: ${count}`}
         />
-        <Button action={incrementIfEven(incrementValue)} text={'Add If Even'} />
+        <Button action={incrementIfEven(value)} text={'Add If Even'} />
       </div>
     </div>
   );
