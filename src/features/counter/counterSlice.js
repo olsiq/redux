@@ -62,6 +62,9 @@ export const counterSlice = createSlice({
     powerOf: (state, action) => {
       state.value = Math.pow(state.value, action.payload);
     },
+    reset: (state) => {
+      state.value = 0;
+    },
 
     //! maybe a bug with nagative numbers
     showAlert: (state) => {
@@ -89,6 +92,7 @@ export const {
   decrementByAmount,
   square,
   powerOf,
+  reset,
   showAlert,
 } = counterSlice.actions;
 

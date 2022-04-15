@@ -12,6 +12,7 @@ import {
   incrementIfOdd,
   incrementIfEven,
   selectCount,
+  reset,
   showAlert,
 } from './counterSlice';
 import { Button } from './Button';
@@ -20,9 +21,9 @@ import styles from './Counter.module.css';
 export function Counter() {
   const count = useSelector(selectCount);
 
-  const [incrementAmount, setIncrementAmount] = useState('2');
+  const [inputValue, setInputValue] = useState(2);
 
-  const incrementValue = Number(incrementAmount) || 0;
+  const incrementValue = Number(inputValue) || 0;
 
   return (
     <div>
@@ -31,13 +32,21 @@ export function Counter() {
         <span className={styles.value}>{count}</span>
         <Button action={increment()} text={'+'} />
       </div>
-
       <div className={styles.row}>
         <input
           className={styles.textbox}
           aria-label='Set increment amount'
-          value={incrementAmount}
-          onChange={(e) => setIncrementAmount(e.target.value)}
+          value={inputValue}
+          onChange={(e) => setInputValue(e.target.value)}
+        />
+      </div>
+      <div className={styles.row}>
+        <Button
+          action={reset()}
+          text={'reset'}
+          onClick={() => {
+            console.log('hello');
+          }}
         />
       </div>
       <div className={styles.row}>
@@ -53,7 +62,6 @@ export function Counter() {
 
         <Button action={incrementIfOdd(incrementValue)} text={'Add If Odd '} />
       </div>
-
       <div className={styles.row}>
         <Button action={square(incrementValue)} text={'Square'} />
         <Button
@@ -63,7 +71,6 @@ export function Counter() {
         />
         <Button action={showAlert(incrementValue)} text={'Show binary'} />
       </div>
-
       <div className={styles.row}>
         <Button
           //? we need to decrement here
